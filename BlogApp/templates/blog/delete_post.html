@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+    {{post.tag_titulo}}
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <h1>Eliminar: {{post.titulo}}</h1>
+    
+        <form method='POST'>
+        {% csrf_token %}
+        <strong>Eliminar blog?</strong>
+        <button class="btn btn-secondary">Eliminar</button>
+        </form>
+      
+    {% else %}
+        <h2>No has iniciado sesion! :)</h2>
+    {% endif %}
+{% endblock %}

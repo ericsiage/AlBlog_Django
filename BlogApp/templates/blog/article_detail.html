@@ -1,0 +1,27 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+    {{post.tag_titulo}}
+{% endblock %}
+
+{% block content %}
+    
+</br><h1> {{post.titulo }}</h1>
+    {% if user.is_authenticated %}
+    
+        <p>Opciones: <a href="{% url 'update_post' post.pk %}">Editar</a> | <a href="{% url 'delete_post' post.pk %}">Borrar</a></p></br>
+    
+    {% endif %}
+    
+    
+     De: {{post.autor.first_name}} {{post.autor.last_name}}
+     - Fecha: {{post.fecha_publicacion}}
+    <hr> 
+    <h2>Contenido</h2>
+    <hr>
+    <p><h5>{{post.contenido}}</h5>
+    
+    </br></br>
+    <a href="{% url 'Home' %}" class="btn btn-secondary"> Atrás </a>
+    
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+    Home
+{% endblock %}
+{% block content %}
+</br><h1> Publicaciones</h1>
+<ul>
+    
+    
+{% for post in object_list %}
+<li><a href= "{% url 'article-detail' post.pk %}">
+    {{ post.titulo }}</a> |
+    Autor: {{ post.autor.first_name }} | Fecha: {{post.fecha_publicacion}}
+    <p>{{ post.contenido|slice:":100"|safe }}</p>
+    {% if user.is_authenticated %}
+        <p><a href="{% url 'update_post' post.pk %}">Editar</a> | 
+           <a href="{% url 'delete_post' post.pk %}">Borrar</a></p>
+    {% endif %}
+
+{% endfor %}
+
+</li>
+</ul>
+{% endblock %}
